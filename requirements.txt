@@ -1,0 +1,4 @@
+Flask>=3.0,<4.0
+numpy>=1.26,<3.0
+Pillow>=10.0,<13.0
+gunicorn>=22.0,<24.0; platform_system != "Windows"

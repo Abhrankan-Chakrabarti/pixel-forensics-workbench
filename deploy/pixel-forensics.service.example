@@ -1,0 +1,25 @@
+[Unit]
+Description=Pixel Forensics Workbench
+After=network.target
+
+[Service]
+Type=simple
+User=pixel-forensics
+Group=pixel-forensics
+WorkingDirectory=/opt/pixel-forensics-workbench
+EnvironmentFile=/etc/pixel-forensics.env
+ExecStart=/opt/pixel-forensics-workbench/.venv/bin/gunicorn --workers 1 --threads 2 --timeout 240 --bind 127.0.0.1:8000 app:app
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/pixel-forensics-workbench/uploads /opt/pixel-forensics-workbench/results /opt/pixel-forensics-workbench/reports /opt/pixel-forensics-workbench/data
+MemoryMax=1G
+CPUQuota=150%
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

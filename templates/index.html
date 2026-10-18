@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Local-first image forensics and pixel analysis workbench.">
+  <title>Pixel Forensics Workbench</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app" id="workbench" data-theme="ocean" data-style="glow" data-motion="glow">
+  <header class="topbar" id="top">
+    <a class="brand-lockup brand-link" href="#top" aria-label="Pixel Forensics Workbench — return to page top">
+      <div class="brand-mark fingerprint-mark" aria-hidden="true">
+        <svg class="fingerprint-logo" viewBox="0 0 48 48" focusable="false">
+          <g class="fingerprint-lines">
+            <path d="M24 5.5C13.5 5.5 6.5 13.2 6.5 23.8"/>
+            <path d="M24 10C16.1 10 11 15.7 11 23.8"/>
+            <path d="M24 14.5c-5.4 0-8.6 3.8-8.6 9.1 0 5.2-.8 9.2-3.1 12.1"/>
+            <path d="M24 19c-2.8 0-4.4 2.1-4.4 5.1 0 6.9-.8 11.8-3.5 15.2"/>
+            <path d="M24 5.5c10.5 0 17.5 7.7 17.5 18.3 0 3.2-.5 6.1-1.6 8.8"/>
+            <path d="M24 10c7.9 0 13 5.7 13 13.8 0 2.7-.4 5.2-1.2 7.4"/>
+            <path d="M24 14.5c5.4 0 8.6 3.8 8.6 9.1 0 2.8.4 5.1 1.3 7.1"/>
+            <path d="M24 19c2.8 0 4.4 2.1 4.4 5.1 0 4.7.8 8.6 3.2 11.4"/>
+          </g>
+          <g class="fingerprint-pixels"><rect x="34" y="35" width="4" height="4" rx=".7"/><rect x="39.5" y="38" width="3" height="3" rx=".5"/><rect x="40.5" y="32" width="2.5" height="2.5" rx=".4"/><rect x="35" y="41" width="2.3" height="2.3" rx=".4"/></g>
+        </svg>
+      </div>
+      <div><div class="brand-title">PIXEL FORENSICS <span>WORKBENCH</span></div><div class="brand-sub">IMAGE ANALYSIS · FORENSICS · PIXEL INVESTIGATION</div></div>
+    </a>
+    <div class="header-right"><span class="local-pill"><i></i> TEMPORARY PROCESSING</span><span class="expiry-pill" title="Uploads, results, and reports are scheduled for deletion within 10 minutes of upload"><i></i> AUTO-CLEAR · 10 MIN RETENTION</span><span class="version-label">44 ANALYSIS MODULES</span><span class="status-chip"><b id="healthDot"></b><span id="healthText">Checking backend…</span></span></div>
+  </header>
+  <div class="themebar">
+    <span class="theme-hint">◈ CUSTOMIZE WORKSPACE</span>
+    <label>Theme <select id="themeSelect"><option value="hacker">Hacker Green</option><option value="neon">Neon Cyberpunk</option><option value="ocean" selected>Midnight Blue</option><option value="amber">Amber Terminal</option><option value="crimson">Crimson Pulse</option><option value="violet">Ultraviolet</option><option value="stealth">Stealth Graphite</option></select></label>
+    <label>Layout <select id="styleSelect"><option value="classic">Classic</option><option value="glass">Glass Panels</option><option value="glow" selected>Cyber Glow</option><option value="aurora">Aurora Glass</option><option value="compact">Compact</option><option value="wide">Wide Canvas</option></select></label>
+    <label>Animation <select id="motionSelect"><option value="subtle">Subtle</option><option value="glow" selected>Neon Pulse</option><option value="spectrum">Spectrum Flow</option><option value="scanline">Scanline Sweep</option><option value="orbit">Orbit Halo</option><option value="glitch">Glitch Flicker</option><option value="off">Off</option></select></label>
+  </div>
+
+  <main class="workbench-grid">
+    <aside class="module-panel panel" id="modulePanel">
+      <div class="panel-heading"><div><span class="section-index">01</span><div><h2>Module Selection</h2><p>Choose the analyzers for this image</p></div></div><span class="heading-icon">▦</span></div>
+      <div class="module-controls">
+        <input id="moduleSearch" class="search-input" type="search" placeholder="Search modules… e.g. entropy, ELA" autocomplete="off" aria-label="Search analysis modules">
+        <div class="select-actions"><button class="btn small" id="selectAll">▣ Select All</button><button class="btn small" id="selectCore">◈ Core Set</button><button class="btn small" id="selectNone">○ Clear</button></div>
+        <div class="select-count"><span>AVAILABLE MODULES</span><b id="moduleCount">44</b><span class="count-divider"></span><span>SELECTED</span><b id="selectedCount">0</b></div>
+      </div>
+      <div class="category-list" id="moduleCategories" aria-label="Module categories"><div class="loading-line">Loading module catalog…</div></div>
+      <div class="sidebar-note"><span class="note-icon">ⓘ</span><span>Images are processed temporarily by this service. Read the Privacy Policy. Results are screening clues; verify them manually.</span></div>
+    </aside>
+
+    <section class="main-workspace">
+      <section class="source-grid">
+        <article class="panel upload-panel">
+          <div class="panel-heading"><div><span class="section-index">02</span><div><h2>Source Image</h2><p>Upload once and reuse across selected modules</p></div></div><span class="heading-icon">⇧</span></div>
+          <div class="upload-content">
+            <label class="dropzone" id="dropzone" for="fileInput" tabindex="0" role="button" aria-label="Choose or drop an image">
+              <div class="upload-symbol">⇧</div><strong id="uploadTitle">Drop an image here</strong><span id="uploadSub">or click to browse your computer</span><small>JPG · PNG · BMP · WEBP · TIFF · GIF &nbsp;|&nbsp; MAX 20 MB</small>
+            </label>
+            <input class="visually-hidden" id="fileInput" type="file" accept="image/jpeg,image/png,image/bmp,image/webp,image/tiff,image/gif">
+            <div class="file-actions"><span id="fileInfo" class="file-info">No image loaded</span><button class="btn small" id="chooseBtn">Browse</button><button class="btn small danger-quiet" id="clearFile" disabled>Clear</button></div>
+          </div>
+        </article>
+        <article class="panel preview-panel">
+          <div class="panel-heading"><div><span class="section-index">PREVIEW</span><div><h2>Image Preview</h2><p id="previewDimensions">Waiting for source image</p></div></div><span class="preview-indicator" id="previewIndicator">NO SOURCE</span></div>
+          <div class="source-preview" id="sourcePreview"><div class="empty-image"><span>▧</span><b>Image appears here</b><small>Choose a source image to begin</small></div></div>
+        </article>
+        <article class="panel info-panel">
+          <div class="panel-heading"><div><span class="section-index">INFO</span><div><h2>Image Information</h2><p>Decoded source properties</p></div></div><span class="heading-icon">ⓘ</span></div>
+          <div class="info-table" id="imageInfo"><div class="info-row"><span>File name</span><b>—</b></div><div class="info-row"><span>Format</span><b>—</b></div><div class="info-row"><span>Dimensions</span><b>—</b></div><div class="info-row"><span>File size</span><b>—</b></div><div class="info-row"><span>Color mode</span><b>—</b></div><div class="info-row"><span>SHA-256</span><b>—</b></div></div>
+        </article>
+      </section>
+
+      <section class="run-strip panel">
+        <button class="btn run-btn" id="runBtn" disabled><span>▶</span> RUN ANALYSIS</button>
+        <div class="run-meta"><span class="gear-icon">⚙</span><span>Selected Modules</span><b id="runSelected">0 / 44</b></div>
+        <div class="progress-area"><div class="progress-line"><span id="runStatus">Upload an image, then select modules.</span><b id="progressPercent">0%</b></div><div class="progress-track"><div id="progressFill"></div></div></div>
+        <div class="elapsed"><span>◷</span><div><small>ELAPSED</small><b id="elapsedTime">—</b></div></div>
+      </section>
+
+      <section class="results-section">
+        <div class="results-toolbar"><div><div class="results-title"><span class="section-index">03</span><h2>Analysis Results</h2><span class="live-tag" id="resultCountTag">WAITING</span></div><p id="resultSubtitle">Results from selected modules will be grouped by category.</p></div><div class="result-actions"><button class="btn small" id="toggleModules" type="button" aria-controls="modulePanel" aria-expanded="true">Hide Module Selection</button><button class="btn small" id="expandAll" disabled>Expand All</button><button class="btn small" id="collapseAll" disabled>Collapse All</button><button class="btn small" id="resetRun" disabled>Reset</button><button class="btn small export-btn" id="exportHtmlReport" disabled>⇩ HTML Report</button><button class="btn small export-btn" id="exportPdfReport" disabled>⇩ PDF Report</button></div></div>
+        <nav class="result-tabs" id="resultTabs" aria-label="Filter result categories"><button class="result-tab active" data-filter="all">All Results <b id="allResultsCount">0</b></button></nav>
+        <div id="resultsRoot"><div class="empty-results panel"><div class="empty-results-icon">⌁</div><h3>Ready for image investigation</h3><p>Upload a source image, choose modules on the left, and run your analysis. Real measurements and generated visualizations will appear here.</p></div></div>
+        <p class="results-footnote"><b>Analyst note:</b> outputs are algorithmic screening signals, not definitive authenticity verdicts. Check original context, metadata reliability, false positives, and independent evidence before drawing conclusions.</p>
+      </section>
+      <footer class="page-footer"><span>PIXEL FORENSICS WORKBENCH <i>·</i> BUILT BY <a href="https://ctf.osint.industries/" target="_blank" rel="noopener noreferrer">om ctf osint industries</a></span><span class="footer-links"><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a></span><span>Temporary files are scheduled for deletion within 10 minutes of upload.</span></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <div id="imageLightbox" class="image-lightbox hidden" role="dialog" aria-modal="true" aria-label="Expanded image preview"><div class="lightbox-toolbar"><span id="lightboxCaption">Image preview</span><button class="btn small" id="closeLightbox" type="button">Close ✕</button></div><img id="lightboxImage" alt="Expanded image preview"><p>Click outside the image or press Escape to close.</p></div>
+  <div class="modal-backdrop hidden" id="busyOverlay" role="status" aria-live="polite"><div class="busy-dialog"><div class="loading-orb" aria-hidden="true"><span>✳</span></div><div class="loading-kicker">PIXEL FORENSICS · LIVE SESSION</div><strong id="busyTitle">Analyzing image</strong><span id="busySubtitle">Running the selected modules independently…</span><div class="busy-progress"><i></i></div><small class="busy-note">Temporary files are scheduled for deletion within 10 minutes of upload.</small></div></div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>

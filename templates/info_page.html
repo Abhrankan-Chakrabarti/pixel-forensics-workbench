@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>{% if page == 'about' %}About{% elif page == 'privacy' %}Privacy Policy{% elif page == 'terms' %}Terms of Use{% else %}Contact{% endif %} · Pixel Forensics Workbench</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/">PIXEL FORENSICS <span>WORKBENCH</span></a><nav><a href="/">Workbench</a><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a></nav></header>
+  <main class="page">
+  {% if page == 'about' %}
+    <p class="eyebrow">THE PROJECT</p><h1>About Pixel Forensics Workbench</h1>
+    <p>Pixel Forensics Workbench is an image-analysis workbench for digital investigation, forensic triage, and transparent experimentation. It provides selectable analysis modules that produce measurements and visualizations for an analyst to review.</p>
+    <h2>What it can help with</h2><ul><li>Image properties, channels, histograms, and pixel-level relationships.</li><li>Candidate anomalies, compression clues, residual views, and Error Level Analysis-style visualizations.</li><li>Bit-plane and data-hiding screening signals, metadata inspection, and comparison utilities.</li><li>Candidate periodicity and autostereogram/depth-map exploration.</li></ul>
+    <h2>Interpret results carefully</h2><p>Outputs are screening signals, not proof of tampering, authenticity, or hidden content. Compression, resizing, sharpening, natural texture, and other benign operations can create false positives. Preserve the original evidence and corroborate findings independently.</p>
+    <p class="credit">Built by <a href="https://ctf.osint.industries/" target="_blank" rel="noopener noreferrer">om ctf osint industries</a>.</p>
+  {% elif page == 'privacy' %}
+    <p class="eyebrow">DATA HANDLING</p><h1>Privacy Policy</h1><p><strong>Last updated: 18 October 2026</strong></p>
+    <h2>Images and analysis results</h2><p>Images are uploaded to this service for server-side analysis. The application targets deletion of each upload, generated visualization, and temporary report file at the 10-minute threshold from upload. A background cleanup process checks for expired files approximately every 15 seconds, and expired session files are also cleaned on startup. If an analysis is still actively running at the threshold, cleanup waits for that job to finish, so retention can exceed 10 minutes in that case.</p>
+    <p>Cleanup is best-effort, not a guarantee of secure erasure from storage media, backups, snapshots, operating-system caches, or infrastructure-level logs. The operator must configure the server, backups, and storage accordingly. Do not upload highly sensitive images unless you are comfortable with this handling.</p>
+    <h2>Technical data</h2><p>The application may process basic request information such as IP address for short-window abuse controls and operational errors. Server and reverse-proxy logs may be configured separately by the hosting operator. This application is not intended to store user accounts or long-term image archives.</p>
+    <h2>Third-party services</h2><p>The host, domain provider, CDN, reverse proxy, or other infrastructure services may process connection metadata according to their own terms and settings. The operator should document any services actually enabled before public launch.</p>
+    <h2>Your choices</h2><p>Do not upload images you are not authorized to analyze. Use the Clear control to request immediate deletion of the active session. You can stop using the service at any time.</p>
+  {% elif page == 'terms' %}
+    <p class="eyebrow">ACCEPTABLE USE</p><h1>Terms of Use</h1><p>Use Pixel Forensics Workbench only for lawful analysis of images you own or are authorized to examine. Do not use it to disrupt the service, submit malware or exploit payloads, evade access controls, or interfere with other users.</p><p>Analysis outputs are heuristic indicators and may be incomplete or inaccurate. They are not a substitute for a qualified forensic examination, validated chain of custody, or independent corroboration. You are responsible for interpreting results and handling any evidence appropriately.</p><p>The service is provided on an “as available” basis. Availability, retention timing, and output accuracy cannot be guaranteed. The operator may limit or suspend abusive use to protect the service.</p>
+  {% else %}
+    <p class="eyebrow">PROJECT CONTACT</p><h1>Contact</h1><p>For project information, feature suggestions, or responsible reports about a security issue, use the project maintainer identity below.</p><p class="credit"><strong>om ctf osint industries</strong><br><a href="https://ctf.osint.industries/" target="_blank" rel="noopener noreferrer">CTF.OSINT.INDUSTRIES</a></p><p>Please do not send passwords, cloud credentials, private keys, or sensitive image evidence through public channels.</p>
+  {% endif %}
+  </main>
+  <footer><span>© 2026 Pixel Forensics Workbench</span><span>Built by <a href="https://ctf.osint.industries/" target="_blank" rel="noopener noreferrer">om ctf osint industries</a></span></footer>
+</body>
+</html>
