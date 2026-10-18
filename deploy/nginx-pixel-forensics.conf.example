@@ -10,7 +10,8 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
     server_name pixel.forensic.dpdns.org;
 
     ssl_certificate     /etc/letsencrypt/live/pixel.forensic.dpdns.org/fullchain.pem;
