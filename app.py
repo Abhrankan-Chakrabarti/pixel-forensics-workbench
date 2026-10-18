@@ -112,6 +112,8 @@ def _cleanup_old_directories() -> int:
             continue
         for child in children:
             try:
+                if child.name.startswith("."):
+                    continue
                 if child.is_symlink():
                     child.unlink(missing_ok=True); removed += 1; continue
                 if child.is_dir():
