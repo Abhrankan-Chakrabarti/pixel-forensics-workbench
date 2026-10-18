@@ -1,5 +1,10 @@
 # Pixel Forensics Workbench
 
+[![Python CI](https://github.com/Abhrankan-Chakrabarti/pixel-forensics-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhrankan-Chakrabarti/pixel-forensics-workbench/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-3.0-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+
 A local-first Flask web app for inspecting image pixels, image statistics, spatial relationships, bit planes, compression clues, and candidate anomalies. It is designed as a practical workbench for manual digital investigation—not as an automatic authenticity verdict.
 
 ## What is included
