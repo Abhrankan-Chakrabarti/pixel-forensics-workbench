@@ -68,3 +68,15 @@ def test_unknown_module_is_rejected_before_analysis():
     client = application.app.test_client()
     response = client.post("/api/analyze", json={"session_id": str(uuid.uuid4()), "modules": ["not-a-real-module"]})
     assert response.status_code == 400
+
+
+def test_health_endpoint_cors_headers():
+    client = application.app.test_client()
+    response = client.get("/api/health", headers={"Origin": "https://forensic.dpdns.org"})
+    assert response.status_code == 200
+    assert response.headers.get("Access-Control-Allow-Origin") == "*"
+    assert response.headers.get("Cross-Origin-Resource-Policy") == "cross-origin"
+    data = response.get_json()
+    assert data["status"] == "ok"
+    assert data["modules"] == 44
+

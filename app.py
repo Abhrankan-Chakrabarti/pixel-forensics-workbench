@@ -235,9 +235,27 @@ def terms_page():
 def contact_page():
     return render_template("info_page.html", page="contact")
 
-@app.get("/api/health")
+@app.route("/api/health", methods=["GET", "OPTIONS"])
 def health():
-    return jsonify({"status":"ok","app":"Pixel Forensics Workbench","version":"1.0.0","mode":"temporary-processing","modules":len(all_modules()),"session_ttl_seconds":app.config["SESSION_TTL_SECONDS"]})
+    if request.method == "OPTIONS":
+        resp = app.make_default_options_response()
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        resp.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+        resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        resp.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+        return resp
+    resp = jsonify({
+        "status": "ok",
+        "app": "Pixel Forensics Workbench",
+        "version": "1.0.0",
+        "mode": "temporary-processing",
+        "modules": len(all_modules()),
+        "session_ttl_seconds": app.config["SESSION_TTL_SECONDS"],
+    })
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    resp.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    resp.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+    return resp
 
 @app.get("/api/modules")
 def modules():
