@@ -24,8 +24,8 @@ def test_security_headers_and_static_pages():
         assert "Content-Security-Policy" in response.headers
         assert response.headers.get("Cache-Control", "").startswith("no-store")
     page = client.get("/about").get_data(as_text=True)
-    assert "om ctf osint industries" in page
-    assert "linkedin.com" not in page.lower()
+    assert "Abhrankan Chakrabarti" in page
+    assert "linkedin.com/in/abhrankan-chakrabarti" in page.lower()
 
 
 def test_cross_origin_mutation_is_rejected():
