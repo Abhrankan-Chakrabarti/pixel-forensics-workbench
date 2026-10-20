@@ -410,6 +410,35 @@ body{font-size:15px;line-height:1.55}
   color: #fff;
   text-shadow: 0 0 10px color-mix(in srgb, var(--cyan) 80%, transparent);
 }
+.creator-pill {
+  border: 1px solid color-mix(in srgb, var(--cyan) 45%, var(--line));
+  padding: 6px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cyan);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--cyan) 10%, var(--surface));
+  transition: all 0.18s ease;
+}
+.creator-pill:hover {
+  background: color-mix(in srgb, var(--cyan) 22%, var(--surface));
+  color: #fff;
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--cyan) 35%, transparent);
+}
+.creator-pill i {
+  width: 7px;
+  height: 7px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan);
+  display: inline-block;
+}
 .footer-links {
   display: flex;
   align-items: center;
