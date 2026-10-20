@@ -86,9 +86,14 @@ pixel-forensics-workbench/
 │   ├── data_hiding/             # LSB, bit extraction, file signatures/byte sample
 │   ├── investigation/            # Region, tile, hotspot, evidence roll-up
 │   └── utilities/                # Normalization, montage, report, hashes
-├── templates/index.html
-├── static/css/style.css
-├── static/js/app.js
+├── templates/
+│   ├── index.html           # Main analysis workspace
+│   └── info_page.html       # About, Privacy, Terms, and Contact pages
+├── static/
+│   ├── css/style.css        # Cyber theme & UI styles
+│   ├── js/app.js            # Workspace controller & interactive actions
+│   ├── img/og-preview.png   # OpenGraph social preview banner (1200x630)
+│   └── samples/             # Curated forensic test evidence samples
 ├── uploads/                     # Temporary uploaded image sessions
 ├── results/                     # Generated image visualizations
 ├── reports/                     # Internal report cache; users download HTML/PDF
