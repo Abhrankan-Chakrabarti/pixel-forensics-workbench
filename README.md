@@ -5,7 +5,11 @@
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.0-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 
-A local-first Flask web app for inspecting image pixels, image statistics, spatial relationships, bit planes, compression clues, and candidate anomalies. It is designed as a practical workbench for manual digital investigation—not as an automatic authenticity verdict.
+<p align="center">
+  <img src="static/img/og-preview.png" alt="Pixel Forensics Workbench Banner" width="100%" />
+</p>
+
+A local-first Flask web app for inspecting image pixels, image statistics, spatial relationships, bit planes, compression clues, and candidate anomalies. Developed by **Abhrankan Chakrabarti**. Designed as a practical workbench for manual digital investigation—not as an automatic authenticity verdict.
 
 ## What is included
 
@@ -119,4 +123,13 @@ By default the web server binds only to `127.0.0.1`; it is not exposed to your L
 
 ## Static pages and attribution
 
-The app includes `/about`, `/privacy`, `/terms`, and `/contact`. Public attribution uses the username **om ctf osint industries** and links to `https://ctf.osint.industries/`; no real name or LinkedIn profile is included. Review the privacy page against the actual EC2, reverse-proxy, logging, backup, and snapshot configuration before launch.
+The app includes `/about`, `/privacy`, `/terms`, and `/contact`. Public attribution is credited to **Abhrankan Chakrabarti** with direct links to his LinkedIn profile.
+
+---
+
+## 👨‍💻 Author & Maintainer
+
+**Abhrankan Chakrabarti**
+- **LinkedIn**: [Abhrankan Chakrabarti](https://www.linkedin.com/in/abhrankan-chakrabarti-159460214/)
+- **GitHub**: [@Abhrankan-Chakrabarti](https://github.com/Abhrankan-Chakrabarti)
+- **Email**: [abhrankan@gmail.com](mailto:abhrankan@gmail.com)
