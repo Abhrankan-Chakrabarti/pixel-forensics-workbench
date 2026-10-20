@@ -191,6 +191,24 @@
     $('previewDimensions').textContent='Waiting for source image';$('previewIndicator').textContent='NO SOURCE';$('previewIndicator').classList.remove('ready');$('clearFile').disabled=true;
     updateImageInfo({});setProgress(0,'Upload an image, then select modules.');$('elapsedTime').textContent='—';resetResults();$('uploadSub').textContent='or click to browse your computer';updateCounts();
   }
+  async function loadSampleEvidence() {
+    try {
+      toast('Loading sample forensic evidence…');
+      const res = await fetch('/static/samples/sample_forensic_evidence.png');
+      if (!res.ok) throw new Error('Could not fetch sample evidence image');
+      const blob = await res.blob();
+      const file = new File([blob], 'sample_forensic_evidence.png', { type: 'image/png' });
+      await selectFile(file);
+      if (!state.selected.size) {
+        state.modules.filter(m => ['core', 'basic', 'relationships'].includes(m.key)).forEach(m => state.selected.add(m.id));
+        renderModules();
+        updateCounts();
+        toast('Loaded sample evidence image & selected Core analysis modules.');
+      }
+    } catch (err) {
+      toast('Error loading sample image: ' + err.message, true);
+    }
+  }
   async function runAnalysis() {
     if (!state.sessionId || !state.selected.size || state.running) return;
     state.running=true;updateCounts();$('busyOverlay').classList.remove('hidden');$('busyTitle').textContent='Analyzing image';$('busySubtitle').textContent=`Running ${state.selected.size} selected modules independently…`;
@@ -364,6 +382,7 @@
     $('moduleSearch').addEventListener('input',()=>renderModules());
     $('fileInput').addEventListener('change',e=>selectFile(e.target.files && e.target.files[0]));
     $('chooseBtn').addEventListener('click',()=>$('fileInput').click());
+    $('sampleBtn')?.addEventListener('click',loadSampleEvidence);
     $('clearFile').addEventListener('click',clearImage);
     $('dropzone').addEventListener('dragover',e=>{e.preventDefault();$('dropzone').classList.add('drag');});
     $('dropzone').addEventListener('dragleave',()=>$('dropzone').classList.remove('drag'));

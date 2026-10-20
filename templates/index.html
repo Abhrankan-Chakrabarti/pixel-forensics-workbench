@@ -4,8 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Local-first image forensics and pixel analysis workbench.">
-  <title>Pixel Forensics Workbench</title>
+  <meta name="description" content="Local-first image forensics and pixel analysis workbench with 44 modular analyzers. Built by Abhrankan Chakrabarti.">
+  <title>Pixel Forensics Workbench · Built by Abhrankan Chakrabarti</title>
+
+  <!-- Open Graph / LinkedIn / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pixel.forensic.dpdns.org/">
+  <meta property="og:title" content="Pixel Forensics Workbench · Abhrankan Chakrabarti">
+  <meta property="og:description" content="44 digital forensic analysis modules: ELA, Steganography, Frequency Analysis, and Metadata Triage. Built by Abhrankan Chakrabarti.">
+  <meta property="og:image" content="https://pixel.forensic.dpdns.org/static/img/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pixel Forensics Workbench · Abhrankan Chakrabarti">
+  <meta name="twitter:description" content="44 digital forensic analysis modules: ELA, Steganography, Frequency Analysis, and Metadata Triage. Built by Abhrankan Chakrabarti.">
+  <meta name="twitter:image" content="https://pixel.forensic.dpdns.org/static/img/og-preview.png">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -59,7 +75,7 @@
               <div class="upload-symbol">⇧</div><strong id="uploadTitle">Drop an image here</strong><span id="uploadSub">or click to browse your computer</span><small>JPG · PNG · BMP · WEBP · TIFF · GIF &nbsp;|&nbsp; MAX 20 MB</small>
             </label>
             <input class="visually-hidden" id="fileInput" type="file" accept="image/jpeg,image/png,image/bmp,image/webp,image/tiff,image/gif">
-            <div class="file-actions"><span id="fileInfo" class="file-info">No image loaded</span><button class="btn small" id="chooseBtn">Browse</button><button class="btn small danger-quiet" id="clearFile" disabled>Clear</button></div>
+            <div class="file-actions"><span id="fileInfo" class="file-info">No image loaded</span><button class="btn small" id="chooseBtn">Browse</button><button class="btn small" id="sampleBtn" type="button" title="Load sample forensic evidence image">◈ Sample</button><button class="btn small danger-quiet" id="clearFile" disabled>Clear</button></div>
           </div>
         </article>
         <article class="panel preview-panel">
