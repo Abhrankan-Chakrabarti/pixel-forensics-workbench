@@ -10,7 +10,7 @@ This project has application-level safeguards, but no single Flask application c
 - Absolute retention marker per session. Uploads, visualizations, report cache and temporary session artifacts are scheduled for cleanup no later than the 10-minute retention threshold plus the cleanup interval during normal operation. The worker runs every 15 seconds; startup cleanup reaps leftovers from a prior process.
 - Per-process request rate limits, one active analysis at a time, module-ID validation, a per-session output-size cap, and same-origin checks when the browser supplies an Origin header.
 - Security response headers, Content Security Policy, no-store caching, and generic error messages for unexpected failures.
-- About, Privacy, Terms, and Contact pages; built and maintained by Abhrankan Chakrabarti with project contact and LinkedIn links.
+- About, Privacy, Terms, and Contact pages; built and maintained by Omeshwar Bawane with project contact and LinkedIn links.
 
 ## Required EC2 steps before going public
 
